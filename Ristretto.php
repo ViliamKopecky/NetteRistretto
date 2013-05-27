@@ -53,8 +53,7 @@ class Ristretto extends Nette\Object {
 
 	public function renderSnippet($app) {
 		if($this->shouldWeShowRistretto()) {
-			$host = $this->application->presenter->context->httpRequest->url->host;
-			echo '<script src="//'.$host.':'.self::$port.'/ristretto.js"></script>';
+			echo '<script>(function(){var s=document.createElement("script");s.setAttribute("src", "http://"+location.hostname+":'.self::$port.'/ristretto.js");document.getElementsByTagName("body")[0].appendChild(s);void(s);})();</script>';
 		}
 	}
 }
