@@ -18,13 +18,7 @@ module.exports = function (grunt) {
       css: function(filepath) {
         return ['ristretto:reloadStyles'];
       },
-      "latte": function(filepath) {
-        return ['ristretto:reload'];
-      },
-      "php": function(filepath) {
-        return ['ristretto:reload'];
-      },
-      "*": function(filepath) {
+      '*': function(filepath) {
         return ['ristretto:reload'];
       }
     },
