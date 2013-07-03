@@ -1,0 +1,19 @@
+{
+    "name": "viliamkopecky/nette-ristretto",
+    "description": "Helper using Ristretto livereload in Nette apps.",
+    "keywords": ["nettefw", "livereload", "ristretto"],
+    "homepage": "https://github.com/ViliamKopecky/NetteRistretto",
+    "type": "library",
+    "license": "MIT",
+    "authors": [{
+        "name": "Viliam Kopecký",
+        "email": "vk@viliamkopecky.cz",
+        "homepage": "http://viliamkopecky.cz"
+    }],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    }
+}
