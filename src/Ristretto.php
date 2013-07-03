@@ -6,30 +6,29 @@
  * @license WTFPL (http://en.wikipedia.org/wiki/WTFPL)
  *
  * use in Nette app:
- * Extras\Ristretto::register($container->application, $port = 2013);
+ * Ristretto::register($container, $port = 2013);
  * 
  */
 
-namespace Extras;
-
-use Nette,
-	Nette\Utils\Strings;
+use	Nette\Utils\Strings;
 
 class Ristretto extends Nette\Object {
 
 	private static $instance;
 	private static $disable = false;
 	public static $port;
-	private $application;
+	private $container;
 
-	public static function register($application, $port=2013) {
+	public static function register($container, $port = 2013) {
 		self::$port = $port;
-		self::$instance = new self($application);
-		$application->onShutdown[] = self::$instance->renderSnippet;
+		self::$instance = new self($container);
+		if(!empty($container->parameters['ristretto'])) {
+			$container->application->onShutdown[] = callback(self::$instance, 'renderSnippet');
+		}
 	}
 
-	function __construct(Nette\Application\Application $application) {
-		$this->application = $application;
+	function __construct(\SystemContainer $container) {
+		$this->container = $container;
 	}
 
 	private function shouldWeShowRistretto() {
