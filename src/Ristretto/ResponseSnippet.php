@@ -21,10 +21,24 @@ class ResponseSnippet extends Object {
 	public $port;
 	private $application;
 
-	function __construct($port, Application $application) {
+	function __construct($port, Application $application, $config_filepath = null) {
 		$this->port = $port;
 		$this->application = $application;
 		$application->onShutdown[] = callback($this, 'renderSnippet');
+		
+		if(file_exists($port)) {
+			$config = json_decode(file_get_contents($port));
+			if(isset($config->port)) {
+				$this->port = $config->port;
+			}
+		}
+
+		if(!empty($config_filepath) && file_exists($config_filepath)) {
+			$config = json_decode(file_get_contents($config_filepath));
+			if(isset($config->port)) {
+				$this->port = $config->port;
+			}
+		}
 	}
 
 	private function shouldWeShowRistretto() {
