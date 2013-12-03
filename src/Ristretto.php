@@ -20,7 +20,7 @@ require_once __DIR__ . '/Ristretto/ResponseSnippet.php';
 use	Nette\Application\Application;
 
 class Ristretto {
-	public static function register($port, Application $application) {
-		return new Ristretto\ResponseSnippet($port, $application);
+	public static function register($port, Application $application, $config_filepath = null) {
+		return new Ristretto\ResponseSnippet($port, $application, $config_filepath);
 	}
 }

@@ -27,7 +27,7 @@ class Extension extends CompilerExtension {
 		$config = $this->getConfig($this->defaults);
 		
 		if($config['enable']) {
-			$initialize->addBody('Ristretto::register(?, $this->getService("application"));', array($config['port']));
+			$initialize->addBody('Ristretto::register(?, $this->getService("application"), $this->parameters["appDir"].DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."ristretto.json");', array($config['port']));
 		}
 	}
 }
